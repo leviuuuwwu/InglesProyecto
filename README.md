@@ -24,7 +24,7 @@ simulador_parqueo/
 
 1. Clona este repositorio o descarga el proyecto:
    ```bash
-   git clone https://github.com/tu-usuario/simulador_parqueo.git
+   git clone https://github.com/leviuuuwwu/InglesProyecto
 
 2. Navega a la carpeta del proyecto:
 
