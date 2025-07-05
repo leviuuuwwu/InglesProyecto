@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel de Parqueo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Panel de Administración</h2>
+    <a href="/logout">Cerrar sesión</a>
+    <ul>
+        {% for espacio in parqueos %}
+            <li class="{{ espacio.estado }}">
+                Espacio {{ espacio.id }} - {{ espacio.estado }}
+                <a href="/toggle/{{ espacio.id }}">Cambiar estado</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

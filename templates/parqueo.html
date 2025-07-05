@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="5">
+    <title>Disponibilidad de Parqueo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .contenedor {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .espacio {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            font-size: 18px;
+        }
+        .ocupado {
+            background-color: red;
+        }
+        .libre {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <h3>Resumen</h3>
+    <p> Ocupados: {{ ocupados }} | Libres: {{ libres }}</p>
+    <h2>Disponibilidad Actual de Parqueo</h2>
+    <div class="contenedor">
+        {% for espacio in parqueos %}
+            <div class="espacio {{ espacio.estado }}">
+                {{ espacio.id }}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

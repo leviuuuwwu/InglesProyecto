@@ -1,0 +1,8 @@
+.ocupado {
+  color: red;
+  font-weight: bold;
+}
+.libre {
+  color: green;
+  font-weight: bold;
+}
