@@ -2,24 +2,6 @@
 
 Este es un sitio web simple desarrollado con **Flask** que simula la disponibilidad de espacios de parqueo. El administrador puede cambiar manualmente el estado de los espacios (ocupado o libre), y los usuarios pueden ver una vista pública en tiempo real.
 
-## 📁 Estructura del Proyecto
-
-simulador_parqueo/
-│
-├── app.py # Lógica principal de la app Flask
-├── parqueo_data.py # Lista simulada de espacios de parqueo
-├── requirements.txt # Dependencias necesarias
-│
-├── static/
-│ └── style.css # Estilos generales
-│
-├── templates/
-│ ├── login.html # Vista de inicio de sesión
-│ ├── admin.html # Panel de administración
-│ └── parqueo.html # Vista pública para usuarios
-│
-└── README.md
-
 ## 🚀 Cómo ejecutar el proyecto
 
 1. Clona este repositorio o descarga el proyecto:
@@ -28,7 +10,7 @@ simulador_parqueo/
 
 2. Navega a la carpeta del proyecto:
 
-cd simulador_parqueo
+cd inglesproyecto
 
 3. Instala las dependencias:
 
