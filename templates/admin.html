@@ -5,15 +5,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Panel de Administración</h2>
-    <a href="/logout">Cerrar sesión</a>
-    <ul>
+    <div class="panel-container">
+        <h2 class="panel">Panel de Administración</h2>
+        <a href="/logout">Cerrar sesión</a>
+    </div>
+    <div class="espacios-container">
         {% for espacio in parqueos %}
-            <li class="{{ espacio.estado }}">
-                Espacio {{ espacio.id }} - {{ espacio.estado }}
-                <a href="/toggle/{{ espacio.id }}">Cambiar estado</a>
-            </li>
+            <div class=" espacio-item {{ espacio.estado }}">
+                <span><strong>Espacio {{ espacio.id }}</strong></span>
+                <span>{{ espacio.estado }}</span>
+                 <a href="/toggle/{{ espacio.id }}" class="cambiar-link">Cambiar estado</a>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
