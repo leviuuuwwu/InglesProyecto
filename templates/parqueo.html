@@ -31,9 +31,10 @@
     </style>
 </head>
 <body>
-    <h3>Resumen</h3>
-    <p> Ocupados: {{ ocupados }} | Libres: {{ libres }}</p>
-    <h2>Disponibilidad Actual de Parqueo</h2>
+    <div class="panel-container">
+        <h2 class="panel">Disponibilidad Actual de Parqueo</h2>
+        <p> <strong>Ocupados:</strong> {{ ocupados }} | <strong>Libres:</strong> {{ libres }}</p>
+    </div>
     <div class="contenedor">
         {% for espacio in parqueos %}
             <div class="espacio {{ espacio.estado }}">
