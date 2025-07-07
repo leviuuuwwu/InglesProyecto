@@ -35,7 +35,7 @@ body{
   width: 120px;
   margin-top: 5px;
   margin-bottom: 5px;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 .login{
   background-color: var(--gris-nuevo);
