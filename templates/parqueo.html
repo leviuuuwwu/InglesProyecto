@@ -64,6 +64,11 @@
             flex-wrap: wrap;
         }
 
+        .espacio-vertical {
+            width: 40px;
+            height: 100px;
+        }
+
     </style>
 </head>
 <body>
@@ -116,42 +121,42 @@
     <!-- Fila 1: 25 parqueos -->
     <div class="fila">
         {% for espacio in parqueos[82:107] %}
-            <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
+            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
         {% endfor %}
     </div>
 
     <!-- Fila 2: 25 parqueos -->
     <div class="fila">
         {% for espacio in parqueos[107:132] %}
-            <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
+            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
         {% endfor %}
     </div>
 
     <!-- Fila 3: 17 parqueos -->
     <div class="fila">
         {% for espacio in parqueos[132:149] %}
-            <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
+            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
         {% endfor %}
     </div>
 
     <!-- Fila 4: 25 parqueos -->
     <div class="fila">
         {% for espacio in parqueos[149:174] %}
-            <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
+            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
         {% endfor %}
     </div>
 
     <!-- Fila 5: 25 parqueos -->
     <div class="fila">
         {% for espacio in parqueos[174:199] %}
-            <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
+            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
         {% endfor %}
     </div>
 
     <!-- Fila 6: 32 parqueos -->
     <div class="fila">
         {% for espacio in parqueos[199:231] %}
-            <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
+            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
         {% endfor %}
     </div>
 </div>
