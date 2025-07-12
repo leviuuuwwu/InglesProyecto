@@ -12,20 +12,21 @@
         <p><strong>Ocupados:</strong> {{ ocupados }} | <strong>Libres:</strong> {{ libres }}</p>
     </div>
     <section class="general-container">
-        <section class="zona2-container">
-            <section class="zona2">
+        <section class="zona1-container">
+            <section class="zona1">
                 <div class="zona-title">Zona 1</div>
                 {% for espacio in parqueos[90:150] %}
                 <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
                 {% endfor %}
             </section> 
         </section>   
-
-        <section class="zona1">
-            <div class="zona-title">Zona 2</div>            
-            {% for espacio in parqueos[0:88] %}
-            <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
-            {% endfor %}
+        <section class="zona2-container">
+            <section class="zona2">
+                <div class="zona-title">Zona 2</div>            
+                {% for espacio in parqueos[0:88] %}
+                <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
+                {% endfor %}
+            </section>
         </section>
     </section>
 </body>
