@@ -197,3 +197,65 @@ body{
 .cambiar-link:hover {
   background-color: var(--celeste-4);
 }
+.zona-titulo {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+.libre {
+  background-color: green;
+}
+.ocupado {
+  background-color: red;
+}
+.zona-title {
+  width: 100%;
+  margin: 0px 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 3px;
+}
+.zona1, .zona2 {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--gris);
+}
+.zona2{
+  width: 30%;
+}
+.zona2-container{
+  display: flex;
+  justify-content: right;
+  background-color: #94C1FF;
+}
+.fila {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.columna {
+  display: flex;
+  flex-direction:row;
+  gap: 8px;
+}
+.espacio {
+  width: 60px;
+  height: 30px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  font-size: 14px;
+}
+.general-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px;
+}
