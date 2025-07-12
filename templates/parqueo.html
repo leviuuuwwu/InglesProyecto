@@ -5,162 +5,29 @@
     <title>Disponibilidad de Parqueo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='img/parking.png') }}" type="image/x-icon">
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-
-        .panel-container {
-            margin-bottom: 30px;
-        }
-
-        .zona-titulo {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .zona1 {
-            display: flex;
-            gap: 30px;
-        }
-
-        .columna {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .espacio {
-            width: 100px;
-            height: 40px;
-            border-radius: 6px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            color: white;
-            font-size: 16px;
-        }
-
-        .ocupado {
-            background-color: red;
-        }
-
-        .libre {
-            background-color: green;
-        }
-        .zona2 {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .fila {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .espacio-vertical {
-            width: 40px;
-            height: 100px;
-        }
-
-    </style>
 </head>
 <body>
-
     <div class="panel-container">
         <h2 class="panel">Disponibilidad Actual de Parqueo</h2>
         <p><strong>Ocupados:</strong> {{ ocupados }} | <strong>Libres:</strong> {{ libres }}</p>
     </div>
-
-    <div class="zona-titulo">Zona 1</div>
-    <div class="zona1">
-        <!-- Columna 1: 25 parqueos -->
-        <div class="columna">
-            {% for espacio in parqueos[0:25] %}
+    <section class="general-container">
+        <section class="zona1-container">
+            <section class="zona1">
+                <div class="zona-title">Zona 1</div>
+                {% for espacio in parqueos[90:150] %}
                 <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
-            {% endfor %}
-        </div>
-
-        <!-- Columna 2: 20 parqueos -->
-        <div class="columna">
-            {% for espacio in parqueos[25:45] %}
+                {% endfor %}
+            </section> 
+        </section>   
+        <section class="zona2-container">
+            <section class="zona2">
+                <div class="zona-title">Zona 2</div>            
+                {% for espacio in parqueos[0:88] %}
                 <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
-            {% endfor %}
-        </div>
-
-        <!-- Columna 3: 20 parqueos -->
-        <div class="columna">
-            {% for espacio in parqueos[45:65] %}
-                <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
-            {% endfor %}
-        </div>
-
-        <!-- Columna 4: 12 parqueos -->
-        <div class="columna">
-            {% for espacio in parqueos[65:77] %}
-                <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
-            {% endfor %}
-        </div>
-
-        <!-- Columna 5: 5 parqueos -->
-        <div class="columna">
-            {% for espacio in parqueos[77:82] %}
-                <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
-            {% endfor %}
-        </div>
-    </div>
-
-    <div class="zona-titulo">Zona 2</div>
-<div class="zona2">
-    <!-- Fila 1: 25 parqueos -->
-    <div class="fila">
-        {% for espacio in parqueos[82:107] %}
-            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
-        {% endfor %}
-    </div>
-
-    <!-- Fila 2: 25 parqueos -->
-    <div class="fila">
-        {% for espacio in parqueos[107:132] %}
-            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
-        {% endfor %}
-    </div>
-
-    <!-- Fila 3: 17 parqueos -->
-    <div class="fila">
-        {% for espacio in parqueos[132:149] %}
-            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
-        {% endfor %}
-    </div>
-
-    <!-- Fila 4: 25 parqueos -->
-    <div class="fila">
-        {% for espacio in parqueos[149:174] %}
-            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
-        {% endfor %}
-    </div>
-
-    <!-- Fila 5: 25 parqueos -->
-    <div class="fila">
-        {% for espacio in parqueos[174:199] %}
-            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
-        {% endfor %}
-    </div>
-
-    <!-- Fila 6: 32 parqueos -->
-    <div class="fila">
-        {% for espacio in parqueos[199:231] %}
-            <div class="espacio espacio-vertical {{ espacio.estado }}">{{ espacio.id }}</div>
-        {% endfor %}
-    </div>
-</div>
-
-
+                {% endfor %}
+            </section>
+        </section>
+    </section>
 </body>
 </html>
