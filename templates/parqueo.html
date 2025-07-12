@@ -5,11 +5,19 @@
     <title>Disponibilidad de Parqueo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='img/parking.png') }}" type="image/x-icon">
+    <style>
+        .libre {
+            background-color: green;
+        }
+        .ocupado {
+            background-color: red;
+        } 
+    </style>
 </head>
 <body>
     <div class="panel-container">
-        <h2 class="panel">Disponibilidad Actual de Parqueo</h2>
-        <p><strong>Ocupados:</strong> {{ ocupados }} | <strong>Libres:</strong> {{ libres }}</p>
+        <h2 class="panel">Parking Availability</h2>
+        <p><strong>Taken:</strong> {{ ocupados }} | <strong>Available:</strong> {{ libres }}</p>
     </div>
     <section class="general-container">
         <section class="zona1-container">

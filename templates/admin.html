@@ -7,15 +7,15 @@
 </head>
 <body>
     <div class="panel-container">
-        <h2 class="panel">Panel de Administración</h2>
-        <a href="/logout">Cerrar sesión</a>
+        <h2 class="panel">Administration Panel</h2>
+        <a href="/logout">Sign Out</a>
     </div>
     <div class="espacios-container">
         {% for espacio in parqueos %}
             <div class=" espacio-item {{ espacio.estado }}">
                 <span><strong>Espacio {{ espacio.id }}</strong></span>
                 <span>{{ espacio.estado }}</span>
-                 <a href="/toggle/{{ espacio.id }}" class="cambiar-link">Cambiar estado</a>
+                 <a href="/toggle/{{ espacio.id }}" class="cambiar-link">Change Status</a>
             </div>
         {% endfor %}
     </div>
