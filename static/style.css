@@ -234,10 +234,7 @@ body{
 }
 .zona1{
   background-color: #94C1FF;
-  flex-direction: column;
-}
-.extra{
-  width: 100%;
+  flex-direction: row;
 }
 .zona2{
   width: 100%;
