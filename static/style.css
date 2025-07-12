@@ -224,13 +224,19 @@ body{
   border-radius: 5px;
   background-color: var(--gris);
 }
+.zona1-container{
+  display: flex;
+  width: 100%;
+  justify-content: left;
+}
 .zona2{
-  width: 30%;
+  width: 100%;
 }
 .zona2-container{
-  display: flex;
-  justify-content: right;
   background-color: #94C1FF;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
 }
 .fila {
   display: flex;
@@ -255,7 +261,7 @@ body{
 }
 .general-container{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
   margin: 15px;
 }
