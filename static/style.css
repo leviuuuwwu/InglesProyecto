@@ -215,6 +215,7 @@ body{
   font-size: 1.2rem;
   text-align: center;
   margin-bottom: 3px;
+  background-color: #e63946;
 }
 .zona1, .zona2 {
   justify-content: center;
@@ -229,6 +230,14 @@ body{
   display: flex;
   width: 80%;
   justify-content: left;
+  background-color: aqua;
+}
+.zona1{
+  background-color: #94C1FF;
+  flex-direction: column;
+}
+.extra{
+  width: 100%;
 }
 .zona2{
   width: 100%;
