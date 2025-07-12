@@ -15,15 +15,24 @@
         <section class="zona1-container">
             <section class="zona1">
                 <div class="zona-title">Zona 1</div>
-                {% for espacio in parqueos[90:150] %}
+                {% for espacio in parqueos[1:61] %}
                 <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
                 {% endfor %}
             </section> 
         </section>   
         <section class="zona2-container">
+            <div class="sobrante">
+                <div class="imagen-container">
+                    <img src="{{ url_for('static', filename='img/ESEN.png') }}" alt="Logo ESEN" class="img">
+                </div>
+                <div>
+                    <h1>🟥 ocupado</h1>
+                    <h1>🟩 libre</h1>
+                </div>
+            </div>
             <section class="zona2">
                 <div class="zona-title">Zona 2</div>            
-                {% for espacio in parqueos[0:88] %}
+                {% for espacio in parqueos[62:194] %}
                 <div class="espacio {{ espacio.estado }}">{{ espacio.id }}</div>
                 {% endfor %}
             </section>
