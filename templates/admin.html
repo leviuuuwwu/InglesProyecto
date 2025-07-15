@@ -6,6 +6,18 @@
    <link rel="icon" href="{{ url_for('static', filename='img/parking.png') }}" type="image/x-icon">
 </head>
 <body>
+    <div class="stats-container">
+  <div class="stat-box">
+    <h3>Total Available</h3>
+    <p id="available-count" class="value green">-</p>
+    <p id="total-count" class="sub">out of - total spots</p>
+  </div>
+  <div class="stat-box">
+    <h3>Occupancy Rate</h3>
+    <p id="occupancy-rate" class="value blue">-</p>
+    <p id="occupied-count" class="sub">- spots occupied</p>
+  </div>
+</div>
     <div class="panel-container">
         <h2 class="panel">Administration Panel</h2>
         <a href="/logout">Sign Out</a>
@@ -19,5 +31,15 @@
             </div>
         {% endfor %}
     </div>
+    <script>
+fetch('/api/estadisticas-parqueo')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('available-count').textContent = data.disponibles;
+    document.getElementById('total-count').textContent = `out of ${data.total} total spots`;
+    document.getElementById('occupancy-rate').textContent = `${data.porcentaje_ocupado}%`;
+    document.getElementById('occupied-count').textContent = `${data.ocupados} spots occupied`;
+  });
+</script>
 </body>
 </html>

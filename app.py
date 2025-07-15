@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for, jsonify
 from parqueo_data import espacios
 
 app = Flask(__name__)
@@ -49,6 +49,21 @@ def toggle_estado(espacio_id):
 def logout():
     session.pop('logged_in', None)
     return redirect('/')
+
+@app.route("/api/estadisticas-parqueo")
+def estadisticas_parqueo():
+    total = 192  
+    ocupados = sum(1 for p in espacios if p["estado"] == "ocupado")
+    disponibles = total - ocupados
+    porcentaje_ocupado = round((ocupados / total) * 100, 1)
+
+    return jsonify({
+        "total": total,
+        "disponibles": disponibles,
+        "ocupados": ocupados,
+        "porcentaje_ocupado": porcentaje_ocupado
+    })
+
 
 if __name__ == '__main__':
     app.run(debug=True)
