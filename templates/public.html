@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Disponibilidad de Parqueo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .box {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        max-width: 40px;
+        max-height: 40px;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.375rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .zona-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .box {
+            font-size: 3vw;
+            max-width: 32px;
+            max-height: 32px;
+        }
+
+        .zona-a,
+        .zona-b {
+            width: 100%;
+            max-width: none;
+        }
+
+        .zona-b img {
+            width: 80%;
+        }
+    }
+</style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="w-full p-4">
+        <h1 class="text-3xl font-bold text-center mb-6">Disponibilidad de Parqueo</h1>
+
+        <!-- ZONAS -->
+        <div class="grid grid-cols-2 gap-4 zona-layout">
+            <!-- ZONA A -->
+            <div class="zona-a w-full">
+                <h2 class="text-xl font-semibold mb-2 text-center">Zona A</h2>
+                <div class="grid grid-cols-6 gap-2 w-full px-2">
+                    {% for i in range(1,7) %}
+                        <div class="flex flex-col space-y-1">
+                            {% for p in parqueos if p.zona == 'A' and p.subzona == 'col-' ~ i %}
+                                <div class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}" title="Parqueo {{ p.id }}">
+                                    {{ p.id }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- ZONA B -->
+            <div class="zona-b w-full">
+                <h2 class="text-xl font-semibold mb-2 text-center">Zona B</h2>
+                <div class="grid grid-rows-6 gap-2 w-full px-2">
+                    {% for i in range(1,7) %}
+                        <div class="flex space-x-1 justify-center">
+                            {% for p in parqueos if p.zona == 'B' and p.subzona == 'fila-' ~ i %}
+                                <div class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}" title="Parqueo {{ p.id }}">
+                                    {{ p.id }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Imagen de referencia -->
+                <div class="mt-6 text-center">
+                    <img src="{{ url_for('static', filename='img/tuimagen.jpg') }}" alt="Zona de parqueo" class="w-60 mx-auto opacity-80">
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="mt-6 text-center text-sm text-gray-600">
+            <p>Total: {{ parqueos|length }} parqueos</p>
+            <p>Disponibles: {{ parqueos|selectattr('estado', 'equalto', 'available')|list|length }}</p>
+            <p>Ocupados: {{ parqueos|selectattr('estado', 'equalto', 'occupied')|list|length }}</p>
+        </div>
+
+        <!-- Recarga automática -->
+        <script>
+            setInterval(() => {
+                window.location.reload();
+            }, 2500);
+        </script>
+    </div>
+</body>
+</html>

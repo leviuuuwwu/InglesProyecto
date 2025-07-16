@@ -1,45 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Administration Pane</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-   <link rel="icon" href="{{ url_for('static', filename='img/parking.png') }}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>Admin - Control de Parqueos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="stats-container">
-  <div class="stat-box">
-    <h3>Total Available</h3>
-    <p id="available-count" class="value green">-</p>
-    <p id="total-count" class="sub">out of - total spots</p>
-  </div>
-  <div class="stat-box">
-    <h3>Occupancy Rate</h3>
-    <p id="occupancy-rate" class="value blue">-</p>
-    <p id="occupied-count" class="sub">- spots occupied</p>
-  </div>
-</div>
-    <div class="panel-container">
-        <h2 class="panel">Administration Panel</h2>
-        <a href="/logout">Sign Out</a>
-    </div>
-    <div class="espacios-container">
-        {% for espacio in parqueos %}
-            <div class=" espacio-item {{ espacio.estado }}">
-                <span><strong>Espacio {{ espacio.id }}</strong></span>
-                <span>{{ espacio.estado }}</span>
-                 <a href="/toggle/{{ espacio.id }}" class="cambiar-link">Change Status</a>
+<body class="bg-gray-100 text-gray-800">
+    <div class="max-w-6xl mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6 text-center">Panel de Administración</h1>
+
+        <!-- Estadísticas -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white shadow rounded-xl p-4 text-center">
+                <p class="text-lg font-semibold text-gray-700">Ocupados</p>
+                <p class="text-2xl font-bold text-red-500">{{ stats.ocupados }}</p>
             </div>
-        {% endfor %}
+            <div class="bg-white shadow rounded-xl p-4 text-center">
+                <p class="text-lg font-semibold text-gray-700">Disponibles</p>
+                <p class="text-2xl font-bold text-green-500">{{ stats.disponibles }}</p>
+            </div>
+            <div class="bg-white shadow rounded-xl p-4 text-center">
+                <p class="text-lg font-semibold text-gray-700">Prom. uso (min)</p>
+                <p class="text-2xl font-bold text-blue-500">{{ stats.promedio_tiempo }}</p>
+            </div>
+            <div class="bg-white shadow rounded-xl p-4 text-center">
+                <p class="text-lg font-semibold text-gray-700">Zona más usada</p>
+                <p class="text-2xl font-bold text-purple-500">{{ stats.zona_mas_usada }}</p>
+            </div>
+        </div>
+
+        <!-- Porcentaje total -->
+        <div class="text-center mb-6 text-sm text-gray-600">
+            <p>Porcentaje de parqueos ocupados: <strong>{{ stats.porcentaje_ocupados }}%</strong></p>
+        </div>
+
+        <!-- Parqueos en rejilla -->
+        <div class="grid gap-2" style="display: grid; grid-template-columns: repeat(13, minmax(0, 1fr));">
+            {% for p in parqueos %}
+                <a href="{{ url_for('toggle_parqueo', pid=p.id) }}"
+                   class="w-8 h-8 rounded-md flex items-center justify-center text-xs font-bold transition duration-300 ease-in-out
+                   {% if p.estado == 'available' %}
+                       bg-green-400 hover:bg-green-500 text-white
+                   {% else %}
+                       bg-red-500 hover:bg-red-600 text-white
+                   {% endif %}"
+                   title="Parqueo {{ p.id }} (Zona {{ p.zona }}) - Click para cambiar">
+                    {{ p.id }}
+                </a>
+            {% endfor %}
+        </div>
     </div>
-    <script>
-fetch('/api/estadisticas-parqueo')
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById('available-count').textContent = data.disponibles;
-    document.getElementById('total-count').textContent = `out of ${data.total} total spots`;
-    document.getElementById('occupancy-rate').textContent = `${data.porcentaje_ocupado}%`;
-    document.getElementById('occupied-count').textContent = `${data.ocupados} spots occupied`;
-  });
-</script>
 </body>
 </html>
