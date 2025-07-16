@@ -14,15 +14,15 @@
       padding: 0;
       height: 100%;
       width: 100%;
-      overflow-x: hidden;
+      overflow-x: hidden; 
     }
 
     .box {
       aspect-ratio: 1 / 1;
       width: 100%;
-      max-width: 40px;
-      max-height: 40px;
-      font-size: 0.7rem;
+      max-width: 45px; 
+      max-height: 45px;
+      font-size: 0.8rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -31,33 +31,61 @@
       color: white;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) { 
       .box {
-        font-size: 3vw;
-        max-width: 32px;
-        max-height: 32px;
+        font-size: 0.7rem; 
+        max-width: 40px;
+        max-height: 40px;
       }
     }
 
     .header{
         background-color: #253239;
     }
+    .boton{
+        background-color: #324047;
+    }
+    .boton:hover{
+        background-color: #517d89;
+    }
+
+    @media (max-width: 768px) { 
+        .header {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 1rem; 
+        }
+        .header .header-stats {
+            font-size: 0.8rem;
+            text-align: right; 
+        }
+    }
+
+    @media (min-width: 768px) { 
+        .header {
+            display: grid; 
+            grid-template-columns: 1fr auto 1fr; 
+            align-items: center;
+            padding: 1rem 1.5rem; 
+        }
+    }
   </style>
 </head>
 
 <body class="bg-gray-100 text-gray-800">
-  <header class="py-4 px-6 grid grid-cols-3 items-center rounded-lg mx-4 my-3 header text-white">
-    <div class="flex items-center">
+  <header class="py-4 px-6 rounded-lg mx-4 my-3 header text-white">
+    <div class="flex items-center md:justify-start">
       <img
         src="{{ url_for('static', filename='img/ESEN.png') }}"
         alt="Logo ESEN"
-        class="w-14 opacity-80"
+        class="w-12 md:w-14 opacity-80"
       />
     </div>
 
-    <h1 class="text-2xl text-center font-bold">Parking Availability</h1>
+    <h1 class="hidden md:block text-2xl text-center font-bold">Parking Availability</h1>
 
-    <div class="text-sm text-gray-700 text-right leading-tight">
+    <div class="text-sm text-gray-700 header-stats md:text-right leading-tight">
       <p class="text-white"><strong>Total:</strong> {{ parqueos|length }}</p>
       <p class="text-white">
         <strong>Disponibles:</strong>
@@ -71,64 +99,111 @@
   </header>
 
   <main class="container px-4 mx-auto">
-    <div class="grid grid-cols-1 gap-6 items-start">
-        <div class="flex justify-between">
-            <div class="flex-grow bg-white flex justify-center rounded-lg w-150 items-center">
-                <img
-                    src="{{ url_for('static', filename='img/parqueo.png') }}"
-                    alt="Zona de parqueo"
-                    class="w-96 opacity-80"
-                />
-                 <div class="ml-6 flex flex-col justify-center space-y-1">
-                    <h1>🟥 <strong>taken</strong></h1>
-                    <h1>🟩 <strong>available</strong></h1>
+    <div class="hidden md:flex justify-between items-start">
+        <div class="flex-grow bg-white flex justify-center rounded-lg w-150 items-center p-4">
+            <img
+                src="{{ url_for('static', filename='img/parqueo.png') }}"
+                alt="Zona de parqueo"
+                class="w-96 opacity-80"
+            />
+            <div class="ml-6 flex flex-col justify-center space-y-1">
+                <h1>🟥 <strong>taken</strong></h1>
+                <h1>🟩 <strong>available</strong></h1>
+            </div>
+        </div>
+        <section class="zona-b py-4 ml-6 w-96">
+            <h2 class="text-xl font-semibold mb-4 text-center">Zone B</h2>
+            <div class="mx-auto max-w-xs">
+                <div class="grid grid-cols-6 gap-2 justify-center">
+                {% for i in range(1,7) %}
+                    <div class="flex flex-col space-y-1 items-center">
+                        {% for p in parqueos if p.zona == 'B' and p.subzona == 'fila-' ~ i %}
+                        <div
+                        class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}"
+                        title="Parqueo {{ p.id }}"
+                        >
+                        {{ p.id }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
                 </div>
             </div>
-            <!-- Zona B -->
-            <section class="zona-b py-4 ml-6 w-96">
-                <h2 class="text-xl font-semibold mb-4 text-center">Zone B</h2>
-                <div class="mx-auto max-w-xs">
-                    <div class=" grid grid-cols-6 gap-2 justify-center">
-                    {% for i in range(1,7) %}
-                        <div class="flex flex-col space-y-1 items-center">
-                            {% for p in parqueos if p.zona == 'B' and p.subzona == 'fila-' ~ i %}
-                            <div
-                            class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}"
-                            title="Parqueo {{ p.id }}"
-                            >
-                            {{ p.id }}
-                            </div>
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
-                    </div>
-                </div>
-            </section>
-        </div>
+        </section>
+    </div>
 
-        <!-- Zona A -->
-        <section class="zona-a w-full">
-          <h2 class="text-xl font-semibold mb-2 text-center">Zone A</h2>
-          <div class="grid grid-rows-6 gap-2 w-full px-2">
+    <section class="zona-a w-full hidden md:block">
+        <h2 class="text-xl font-semibold mb-2 text-center">Zone A</h2>
+        <div class="grid grid-rows-6 gap-2 w-full px-2">
             {% for i in range(1,7) %}
             <div class="flex space-x-1 justify-center">
-              {% for p in parqueos if p.zona == 'A' and p.subzona == 'col-' ~ i %}
-              <div
-                class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}"
-                title="Parqueo {{ p.id }}"
-              >
-                {{ p.id }}
-              </div>
-              {% endfor %}
+                {% for p in parqueos if p.zona == 'A' and p.subzona == 'col-' ~ i %}
+                <div
+                    class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}"
+                    title="Parqueo {{ p.id }}"
+                >
+                    {{ p.id }}
+                </div>
+                {% endfor %}
             </div>
             {% endfor %}
-          </div>
+        </div>
+    </section>
+
+    <div class="block md:hidden w-full space-y-4">
+        <div class="flex flex-col items-center bg-white rounded-lg p-4 mb-4">
+            <img
+                src="{{ url_for('static', filename='img/parqueo.png') }}"
+                alt="Zona de parqueo"
+                class="w-64 opacity-80 mb-4"
+            />
+            <div class="flex flex-col justify-center space-y-1">
+                <h1>🟥 <strong>taken</strong></h1>
+                <h1>🟩 <strong>available</strong></h1>
+            </div>
+        </div>
+
+        <button onclick="toggleZona('zonaAMobile')" class="w-full text-white py-2 rounded-lg font-semibold boton">Zone A</button>
+        <section id="zonaAMobile" class="hidden mt-4">
+            <h2 class="text-xl font-semibold text-center my-2">Zone A</h2>
+            <div class="grid grid-rows-6 gap-1 px-2">
+                {% for i in range(1,7) %}
+                <div class="flex space-x-0.5 justify-start overflow-x-auto">
+                    {% for p in parqueos if p.zona == 'A' and p.subzona == 'col-' ~ i %}
+                    <div class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}" title="Parqueo {{ p.id }}">
+                        {{ p.id }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <button onclick="toggleZona('zonaBMobile')" class="w-full text-white py-2 rounded-lg font-semibold boton">Zone B</button>
+        <section id="zonaBMobile" class="hidden mt-4">
+            <h2 class="text-xl font-semibold text-center my-2">Zone B</h2>
+            <div class="grid grid-cols-6 gap-1 justify-center px-2">
+                {% for i in range(1,7) %}
+                    <div class="flex flex-col space-y-0.5 items-center">
+                        {% for p in parqueos if p.zona == 'B' and p.subzona == 'fila-' ~ i %}
+                        <div class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}" title="Parqueo {{ p.id }}">
+                            {{ p.id }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
         </section>
     </div>
   </main>
 
-  <!-- Recarga automática -->
   <script>
+    function toggleZona(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle('hidden');
+    }
+
+    // Recarga automática
     setInterval(() => {
       window.location.reload();
     }, 4000);
