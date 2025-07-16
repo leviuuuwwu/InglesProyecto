@@ -4,7 +4,7 @@ from datetime import datetime
 parqueos = []
 
 # ZONA 1 (contados en columnas hacia abajo)
-zona1_config = [25, 20, 20, 15, 8, 4]  # 6 columnas
+zona1_config = [33, 33, 33, 33]  # 6 columnas
 id_actual = 1
 for col, cantidad in enumerate(zona1_config):
     for _ in range(cantidad):
@@ -18,7 +18,7 @@ for col, cantidad in enumerate(zona1_config):
         id_actual += 1
 
 # ZONA 2 (contados en filas hacia la derecha)
-zona2_config = [20, 20, 15, 15, 20, 20]  # 6 filas
+zona2_config = [7, 7, 7, 7, 7, 7]  # 6 filas
 for fila, cantidad in enumerate(zona2_config):
     for _ in range(cantidad):
         parqueos.append({
