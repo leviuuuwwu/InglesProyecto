@@ -286,6 +286,8 @@ body{
   display: flex;
   gap: 20px;
   margin: 20px;
+  width: 100%;
+  justify-content: center;
 }
 .stat-box {
   background: #fff;
