@@ -38,11 +38,15 @@
         max-height: 32px;
       }
     }
+
+    .header{
+        background-color: #253239;
+    }
   </style>
 </head>
 
 <body class="bg-gray-100 text-gray-800">
-  <header class="py-4 px-6 grid grid-cols-3 items-center">
+  <header class="py-4 px-6 grid grid-cols-3 items-center rounded-lg mx-4 my-3 header text-white">
     <div class="flex items-center">
       <img
         src="{{ url_for('static', filename='img/ESEN.png') }}"
@@ -54,12 +58,12 @@
     <h1 class="text-2xl text-center font-bold">Parking Availability</h1>
 
     <div class="text-sm text-gray-700 text-right leading-tight">
-      <p><strong>Total:</strong> {{ parqueos|length }}</p>
-      <p>
+      <p class="text-white"><strong>Total:</strong> {{ parqueos|length }}</p>
+      <p class="text-white">
         <strong>Disponibles:</strong>
         {{ parqueos|selectattr('estado', 'equalto', 'available')|list|length }}
       </p>
-      <p>
+      <p class="text-white">
         <strong>Ocupados:</strong>
         {{ parqueos|selectattr('estado', 'equalto', 'occupied')|list|length }}
       </p>
