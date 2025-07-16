@@ -18,7 +18,7 @@ for col, cantidad in enumerate(zona1_config):
         id_actual += 1
 
 # ZONA 2 (contados en filas hacia la derecha)
-zona2_config = [7, 7, 7, 7, 7, 7]  # 6 filas
+zona2_config = [9, 9, 9, 9, 9, 9]  # 6 filas
 for fila, cantidad in enumerate(zona2_config):
     for _ in range(cantidad):
         parqueos.append({
