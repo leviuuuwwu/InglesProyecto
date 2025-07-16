@@ -4,16 +4,8 @@
   <meta charset="UTF-8" />
   <title>Disponibilidad de Parqueo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link
-    rel="icon"
-    href="{{ url_for('static', filename='img/parking.png') }}"
-    type="image/x-icon"
-  />
-  <!-- Tailwind CDN -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-    rel="stylesheet"
-  />
+  <link rel="icon" href="{{ url_for('static', filename='img/parking.png') }}" type="image/x-icon"/>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 
   <style>
     html,
@@ -50,7 +42,6 @@
 </head>
 
 <body class="bg-gray-100 text-gray-800">
-  <!-- Encabezado -->
   <header class="py-4 px-6 grid grid-cols-3 items-center">
     <div class="flex items-center">
       <img
@@ -75,12 +66,9 @@
     </div>
   </header>
 
-  <!-- Contenido principal -->
   <main class="container px-4 mx-auto">
     <div class="grid grid-cols-1 gap-6 items-start">
-      <!-- Columna izquierda: imagen + Zona A -->
         <div class="flex justify-between">
-            <!-- Imagen de parqueo -->
             <div class="flex-grow bg-white flex justify-center rounded-lg w-150 items-center">
                 <img
                     src="{{ url_for('static', filename='img/parqueo.png') }}"
@@ -92,7 +80,7 @@
                     <h1>🟩 <strong>available</strong></h1>
                 </div>
             </div>
-            <!-- Columna derecha: Zona B -->
+            <!-- Zona B -->
             <section class="zona-b py-4 ml-6 w-96">
                 <h2 class="text-xl font-semibold mb-4 text-center">Zone B</h2>
                 <div class="mx-auto max-w-xs">
