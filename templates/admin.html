@@ -10,7 +10,7 @@
     <div class="max-w-6xl mx-auto p-6">
         <h1 class="text-3xl font-bold mb-6 text-center">Administration Panel</h1>
 
-        <!-- Estadísticas -->
+        <!-- Stats -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div class="bg-white shadow rounded-xl p-4 text-center">
                 <p class="text-lg font-semibold text-gray-700">Taken</p>
@@ -45,7 +45,7 @@
                    {% else %}
                        bg-red-500 hover:bg-red-600 text-white
                    {% endif %}"
-                   title="Parqueo {{ p.id }} (Zona {{ p.zona }}) - Click para cambiar">
+                   title="Parqueo {{ p.id }} (Zona {{ p.zona }}) - Click to change">
                     {{ p.id }}
                 </a>
             {% endfor %}
