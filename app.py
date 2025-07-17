@@ -17,17 +17,7 @@ def get_parqueos():
 
 @app.route('/')
 def public_view():
-    total = len(parqueos)
-    available = sum(1 for p in parqueos if p["estado"] == "available")
-    occupied = sum(1 for p in parqueos if p["estado"] == "occupied")
-
-    return render_template(
-        'public.html',
-        parqueos=parqueos,
-        total=total,
-        available=available,
-        occupied=occupied
-    )
+    return render_template('public.html', parqueos=parqueos)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
