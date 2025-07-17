@@ -200,38 +200,36 @@
   <script>
   function toggleZona(id) {
     const section = document.getElementById(id);
-    section.classList.toggle('hidden');
-    
-    // Guardar en localStorage
-    localStorage.setItem(id, section.classList.contains('hidden') ? 'hidden' : 'visible');
+    const isHidden = section.classList.contains('hidden');
+    if (isHidden) {
+      section.classList.remove('hidden');
+      localStorage.setItem(id, 'visible');
+    } else {
+      section.classList.add('hidden');
+      localStorage.setItem(id, 'hidden');
+    }
   }
 
-  // Al cargar, restaurar visibilidad
   document.addEventListener('DOMContentLoaded', () => {
     const zonas = ['zonaAMobile', 'zonaBMobile'];
     zonas.forEach(id => {
-      const savedState = localStorage.getItem(id);
       const section = document.getElementById(id);
-      if (section && savedState === 'visible') {
+      const state = localStorage.getItem(id);
+      if (state === 'visible') {
         section.classList.remove('hidden');
       }
     });
-  });
 
-  // Recarga automática (pero guarda el scroll también)
-  setInterval(() => {
-    // Guarda scroll y visibilidad antes del reload
-    localStorage.setItem('scrollPosition', window.scrollY);
-    window.location.reload();
-  }, 4000);
-
-  // Restaurar scroll al recargar
-  window.addEventListener('load', () => {
     const scrollY = localStorage.getItem('scrollPosition');
-    if (scrollY) {
+    if (scrollY !== null) {
       window.scrollTo(0, parseInt(scrollY));
     }
   });
+
+  setInterval(() => {
+    localStorage.setItem('scrollPosition', window.scrollY);
+    window.location.reload();
+  }, 4000);
 </script>
 </body>
 </html>
