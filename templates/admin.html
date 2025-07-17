@@ -2,37 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin - Control de Parqueos</title>
+    <title>Administration Panel</title>
     <link rel="icon" href="{{ url_for('static', filename='img/parking.png') }}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-800">
     <div class="max-w-6xl mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-6 text-center">Panel de Administración</h1>
+        <h1 class="text-3xl font-bold mb-6 text-center">Administration Panel</h1>
 
         <!-- Estadísticas -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div class="bg-white shadow rounded-xl p-4 text-center">
-                <p class="text-lg font-semibold text-gray-700">Ocupados</p>
+                <p class="text-lg font-semibold text-gray-700">Taken</p>
                 <p class="text-2xl font-bold text-red-500">{{ stats.ocupados }}</p>
             </div>
             <div class="bg-white shadow rounded-xl p-4 text-center">
-                <p class="text-lg font-semibold text-gray-700">Disponibles</p>
+                <p class="text-lg font-semibold text-gray-700">Available</p>
                 <p class="text-2xl font-bold text-green-500">{{ stats.disponibles }}</p>
             </div>
             <div class="bg-white shadow rounded-xl p-4 text-center">
-                <p class="text-lg font-semibold text-gray-700">Prom. uso (min)</p>
+                <p class="text-lg font-semibold text-gray-700">Average usage time</p>
                 <p class="text-2xl font-bold text-blue-500">{{ stats.promedio_tiempo }}</p>
             </div>
             <div class="bg-white shadow rounded-xl p-4 text-center">
-                <p class="text-lg font-semibold text-gray-700">Zona más usada</p>
+                <p class="text-lg font-semibold text-gray-700">Most used area</p>
                 <p class="text-2xl font-bold text-purple-500">{{ stats.zona_mas_usada }}</p>
             </div>
         </div>
 
         <!-- Porcentaje total -->
         <div class="text-center mb-6 text-sm text-gray-600">
-            <p>Porcentaje de parqueos ocupados: <strong>{{ stats.porcentaje_ocupados }}%</strong></p>
+            <p>Percentage of occupied parking spaces: <strong>{{ stats.porcentaje_ocupados }}%</strong></p>
         </div>
 
         <!-- Parqueos en rejilla -->
