@@ -99,6 +99,7 @@
   </header>
 
   <main class="container px-4 mx-auto">
+    <!-- Vista Desktop -->
     <div class="hidden md:flex justify-between items-start">
         <div class="flex-grow bg-white flex justify-center rounded-lg w-150 items-center p-4">
             <img
@@ -111,6 +112,7 @@
                 <h1>🟩 <strong>available</strong></h1>
             </div>
         </div>
+        <!-- Zona B -->
         <section class="zona-b py-4 ml-6 w-96">
             <h2 class="text-xl font-semibold mb-4 text-center">Area B</h2>
             <div class="mx-auto max-w-xs">
@@ -121,6 +123,7 @@
                         <div
                         class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}"
                         title="Parqueo {{ p.id }}"
+                        data-parqueo-id="{{ p.id }}"
                         >
                         {{ p.id }}
                         </div>
@@ -132,7 +135,8 @@
         </section>
     </div>
 
-    <section class="zona-a w-full hidden md:block">
+    <!-- Zona A Desktop -->
+    <section class="zona-a w-full hidden md:block mt-6">
         <h2 class="text-xl font-semibold mb-2 text-center">Area A</h2>
         <div class="grid grid-rows-6 gap-2 w-full px-2">
             {% for i in range(1,7) %}
@@ -141,6 +145,7 @@
                 <div
                     class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}"
                     title="Parqueo {{ p.id }}"
+                    data-parqueo-id="{{ p.id }}"
                 >
                     {{ p.id }}
                 </div>
@@ -150,85 +155,92 @@
         </div>
     </section>
 
-    <div class="block md:hidden w-full space-y-4">
-        <div class="flex flex-col items-center bg-white rounded-lg p-4 mb-4">
-            <img
-                src="{{ url_for('static', filename='img/parqueo.png') }}"
-                alt="Zona de parqueo"
-                class="w-64 opacity-80 mb-4"
-            />
-            <div class="flex flex-col justify-center space-y-1">
-                <h1>🟥 <strong>taken</strong></h1>
-                <h1>🟩 <strong>available</strong></h1>
-            </div>
+    <!-- Vista Mobile -->
+<div class="block md:hidden w-full space-y-4 mt-4">
+    <div class="flex flex-col items-center bg-white rounded-lg p-4 mb-4">
+        <img
+            src="{{ url_for('static', filename='img/parqueo.png') }}"
+            alt="Zona de parqueo"
+            class="w-64 opacity-80 mb-4"
+        />
+        <div class="flex flex-col justify-center space-y-1">
+            <h1>🟥 <strong>taken</strong></h1>
+            <h1>🟩 <strong>available</strong></h1>
         </div>
-
-        <button onclick="toggleZona('zonaAMobile')" class="w-full text-white py-2 rounded-lg font-semibold boton">Zone A</button>
-        <section id="zonaAMobile" class="hidden mt-4">
-            <h2 class="text-xl font-semibold text-center my-2">Area A</h2>
-            <div class="grid grid-rows-6 gap-1 px-2">
-                {% for i in range(1,7) %}
-                <div class="flex space-x-0.5 justify-start overflow-x-auto">
-                    {% for p in parqueos if p.zona == 'A' and p.subzona == 'col-' ~ i %}
-                    <div class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}" title="Parqueo {{ p.id }}">
-                        {{ p.id }}
-                    </div>
-                    {% endfor %}
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-
-        <button onclick="toggleZona('zonaBMobile')" class="w-full text-white py-2 rounded-lg font-semibold boton">Zone B</button>
-        <section id="zonaBMobile" class="hidden mt-4">
-            <h2 class="text-xl font-semibold text-center my-2">Area B</h2>
-            <div class="grid grid-cols-6 gap-1 justify-center px-2">
-                {% for i in range(1,7) %}
-                    <div class="flex flex-col space-y-0.5 items-center">
-                        {% for p in parqueos if p.zona == 'B' and p.subzona == 'fila-' ~ i %}
-                        <div class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}" title="Parqueo {{ p.id }}">
-                            {{ p.id }}
-                        </div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
     </div>
+
+    <!-- Botón Zona A -->
+    <button onclick="toggleZona('zonaAMobile')" class="w-full text-white py-2 rounded-lg font-semibold boton">Zone A</button>
+    <section id="zonaAMobile" class="hidden mt-4">
+      <h2 class="text-xl font-semibold text-center my-2">Area A</h2>
+      <div class="grid grid-cols-3 gap-2 px-2">
+        {% for i in range(1,7) %}
+          {% for p in parqueos if p.zona == 'A' and p.subzona == 'col-' ~ i %}
+            <div
+              class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}"
+              title="Parqueo {{ p.id }}"
+              data-parqueo-id="{{ p.id }}"
+            >
+              {{ p.id }}
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Botón Zona B -->
+    <button onclick="toggleZona('zonaBMobile')" class="w-full text-white py-2 rounded-lg font-semibold boton">Zone B</button>
+    <section id="zonaBMobile" class="hidden mt-4">
+      <h2 class="text-xl font-semibold text-center my-2">Area B</h2>
+      <div class="grid grid-cols-3 gap-2 px-2">
+        {% for i in range(1,7) %}
+          {% for p in parqueos if p.zona == 'B' and p.subzona == 'fila-' ~ i %}
+            <div
+              class="box {% if p.estado == 'available' %} bg-green-500 {% else %} bg-red-500 {% endif %}"
+              title="Parqueo {{ p.id }}"
+              data-parqueo-id="{{ p.id }}"
+            >
+              {{ p.id }}
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </section>
+</div>
   </main>
 
   <script>
   function toggleZona(id) {
     const section = document.getElementById(id);
     const isHidden = section.classList.contains('hidden');
-    if (isHidden) {
-      section.classList.remove('hidden');
-      localStorage.setItem(id, 'visible');
-    } else {
-      section.classList.add('hidden');
-      localStorage.setItem(id, 'hidden');
-    }
+    section.classList.toggle('hidden');
+    localStorage.setItem(id, isHidden ? 'visible' : 'hidden');
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    const zonas = ['zonaAMobile', 'zonaBMobile'];
-    zonas.forEach(id => {
+    ['zonaAMobile', 'zonaBMobile'].forEach(id => {
       const section = document.getElementById(id);
       const state = localStorage.getItem(id);
       if (state === 'visible') {
         section.classList.remove('hidden');
       }
     });
-
-    const scrollY = localStorage.getItem('scrollPosition');
-    if (scrollY !== null) {
-      window.scrollTo(0, parseInt(scrollY));
-    }
   });
 
+  // 👇 Actualiza el estado cada 4 segundos sin recargar
   setInterval(() => {
-    localStorage.setItem('scrollPosition', window.scrollY);
-    window.location.reload();
+    fetch('/api/parqueos')
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(p => {
+          const el = document.querySelector(`[data-parqueo-id="${p.id}"]`);
+          if (el) {
+            el.classList.remove('bg-green-500', 'bg-red-500');
+            el.classList.add(p.estado === 'available' ? 'bg-green-500' : 'bg-red-500');
+          }
+        });
+      })
+      .catch(err => console.error('Error al actualizar parqueos:', err));
   }, 4000);
 </script>
 </body>

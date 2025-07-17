@@ -4,10 +4,16 @@ from data.parqueos import parqueos
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from datetime import datetime
 from data.parqueos import parqueos
+from flask import jsonify
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_muuy_segura'  # Necesaria para usar sesiones
 
+
+
+@app.route('/api/parqueos')
+def get_parqueos():
+    return jsonify(parqueos)
 
 @app.route('/')
 def public_view():
