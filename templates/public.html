@@ -198,15 +198,40 @@
   </main>
 
   <script>
-    function toggleZona(id) {
-      const section = document.getElementById(id);
-      section.classList.toggle('hidden');
-    }
+  function toggleZona(id) {
+    const section = document.getElementById(id);
+    section.classList.toggle('hidden');
+    
+    // Guardar en localStorage
+    localStorage.setItem(id, section.classList.contains('hidden') ? 'hidden' : 'visible');
+  }
 
-    // Recarga automática
-    setInterval(() => {
-      window.location.reload();
-    }, 4000);
-  </script>
+  // Al cargar, restaurar visibilidad
+  document.addEventListener('DOMContentLoaded', () => {
+    const zonas = ['zonaAMobile', 'zonaBMobile'];
+    zonas.forEach(id => {
+      const savedState = localStorage.getItem(id);
+      const section = document.getElementById(id);
+      if (section && savedState === 'visible') {
+        section.classList.remove('hidden');
+      }
+    });
+  });
+
+  // Recarga automática (pero guarda el scroll también)
+  setInterval(() => {
+    // Guarda scroll y visibilidad antes del reload
+    localStorage.setItem('scrollPosition', window.scrollY);
+    window.location.reload();
+  }, 4000);
+
+  // Restaurar scroll al recargar
+  window.addEventListener('load', () => {
+    const scrollY = localStorage.getItem('scrollPosition');
+    if (scrollY) {
+      window.scrollTo(0, parseInt(scrollY));
+    }
+  });
+</script>
 </body>
 </html>
