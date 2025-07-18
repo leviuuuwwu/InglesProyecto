@@ -84,18 +84,6 @@
     </div>
 
     <h1 class="hidden md:block text-2xl text-center font-bold">Parking Availability</h1>
-
-    <div class="text-sm text-gray-700 header-stats md:text-right leading-tight">
-      <p class="text-white"><strong>Total:</strong> {{ parqueos|length }}</p>
-      <p class="text-white">
-        <strong>Available:</strong>
-        {{ parqueos|selectattr('estado', 'equalto', 'available')|list|length }}
-      </p>
-      <p class="text-white">
-        <strong>Taken:</strong>
-        {{ parqueos|selectattr('estado', 'equalto', 'occupied')|list|length }}
-      </p>
-    </div>
   </header>
 
   <main class="container px-4 mx-auto">
